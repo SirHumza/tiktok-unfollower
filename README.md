@@ -4,16 +4,21 @@ Unfollow everyone on TikTok who doesn't follow you back. A single JavaScript sni
 
 Inspired by [David Arroyo's Instagram Unfollower](https://github.com/arobertnlands/unfollowNInsta).
 
+## Two modes
+
+| Mode | File | What it does |
+|------|------|-------------|
+| **Smart** (default) | `tiktok-unfollower.js` | Unfollows only non-mutuals — keeps people who follow you back |
+| **Quick** | `tiktok-unfollower-quick.js` | Unfollows *everyone* in your following list, no mutual check |
+
 ## How it works
 
 You run this script **in your own browser**, on your own session. It:
 
 1. Opens your **Following** list and scrolls to load everyone.
-2. Opens your **Followers** list and scrolls to load everyone.
+2. Smart mode only: Opens your **Followers** list and scrolls to load everyone.
 3. Compares the two sets.
-4. Unfollows everyone in "Following" who is **not** in "Followers".
-
-Mutuals (people who follow you back) are never touched.
+4. Unfollows everyone in "Following" who is **not** in "Followers** (smart mode), or everyone (quick mode).
 
 ## Usage
 
@@ -23,14 +28,15 @@ Mutuals (people who follow you back) are never touched.
    - **Windows/Linux:** `F12` or `Ctrl+Shift+I`
    - **Mac:** `Cmd+Option+I`
 4. Click the **Console** tab.
-5. Paste the contents of [`tiktok-unfollower.js`](tiktok-unfollower.js) and press Enter.
+5. Paste the contents of your chosen file and press Enter.
 6. Keep the tab **open and visible** until it finishes.
 
 ## What to expect
 
-- The script adds random delays between unfollows to mimic human behavior — this avoids TikTok's rate limiting.
-- It prints progress to the console: how many it found, how many it will unfollow, and each one as it goes.
-- If TikTok blocks you mid-run (CAPTCHA or "try again later"), wait an hour and run it again. It will skip anyone already unfollowed since they're no longer in your Following list.
+- Smart mode has a safety cap of **200 unfollows per run** (edit `MAX_UNFOLLOW` in the script if you want more).
+- Random delays between actions mimic human behavior — this avoids TikTok's rate limiting.
+- It prints progress to the console so you can watch it work.
+- If TikTok blocks you mid-run (CAPTCHA or "try again later"), wait an hour and run it again. It will skip anyone already unfollowed.
 
 ## Is this safe?
 
